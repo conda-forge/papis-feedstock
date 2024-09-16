@@ -13,7 +13,7 @@ build:
   entry_points:
     - papis=papis.commands.default:run
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
   noarch: python
 
 requirements:
