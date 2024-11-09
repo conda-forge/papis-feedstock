@@ -1,5 +1,5 @@
 {% set name = "papis" %}
-{% set version = "0.13" %}
+{% set version = "0.14" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/papis-{{ version }}.tar.gz
-  sha256: f35a6aa938361bb67c5b77d916ac8cec587638ad7d86dc87a917ac608ec965a7
+  sha256: ba48a6094e27aa040704961b4f89269e6b44ad82c3ecff9cd2ac323e146de91e
 
 build:
   entry_points:
     - papis=papis.commands.default:run
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
   noarch: python
 
 requirements:
@@ -22,22 +22,25 @@ requirements:
     - pip
     - setuptools
   run:
+    - arxiv >=1.0.0
+    - platformdirs >=4.0.0
+    - prompt-toolkit >=3.0.5
     - python >=3.8
     - pyyaml >=3.12
     - arxiv2bib >=1.0.7
     - beautifulsoup4 >=4.4.1
-    - bibtexparser <1.4.0
+    - bibtexparser >=0.6.2,<2
     - chardet >=3.0.2
-    - click >=7.0.0
+    - click >=7
     - colorama >=0.2
     - dominate
     - filetype >=1.0.1
-    - habanero <1.2.0 
+    - habanero >=0.6
     - isbnlib >=3.9.1
-    - lxml <=4.9.1
+    - lxml >=4.3.5
     - prompt_toolkit >=2.0.5
-    - pygments >=2.2.0
-    - pyparsing >=2.2.0
+    - pygments >=2.2
+    - pyparsing >=2.2
     - python-doi >=0.1.1
     - python-slugify >=1.2.6
     - requests >=2.11.1
