@@ -13,12 +13,12 @@ build:
   entry_points:
     - papis=papis.commands.default:run
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
   noarch: python
 
 requirements:
   host:
-    - python >=3.8
+    - python {{ python_min }}
     - pip
     - setuptools
     - hatchling
@@ -26,7 +26,7 @@ requirements:
     - arxiv >=1.0.0
     - platformdirs >=4.0.0
     - prompt-toolkit >=3.0.5
-    - python >=3.8
+    - python >={{ python_min }}
     - pyyaml >=3.12
     - arxiv2bib >=1.0.7
     - beautifulsoup4 >=4.4.1
@@ -58,6 +58,7 @@ test:
     - papis --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/papis/papis
