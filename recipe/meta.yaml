@@ -1,5 +1,5 @@
 {% set name = "papis" %}
-{% set version = "0.14" %}
+{% set version = "0.14.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/papis-{{ version }}.tar.gz
-  sha256: ba48a6094e27aa040704961b4f89269e6b44ad82c3ecff9cd2ac323e146de91e
+  sha256: 1970e549d8931d560b283bdc883a744f1634afbf23bad8eb244dfa967f66ba78
 
 build:
   entry_points:
     - papis=papis.commands.default:run
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
   noarch: python
 
 requirements:
