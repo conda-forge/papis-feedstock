@@ -1,5 +1,5 @@
 {% set name = "papis" %}
-{% set version = "0.14.1" %}
+{% set version = "0.15.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/papis-{{ version }}.tar.gz
-  sha256: 1970e549d8931d560b283bdc883a744f1634afbf23bad8eb244dfa967f66ba78
+  sha256: 9d0e319a4e04388bc1f705c272b607aaf2b678e33530bff64b1a58bc1364b788
 
 build:
   entry_points:
@@ -23,6 +23,7 @@ requirements:
     - setuptools
     - hatchling
   run:
+    - setuptools
     - arxiv >=1.0.0
     - platformdirs >=4.0.0
     - prompt-toolkit >=3.0.5
@@ -34,14 +35,14 @@ requirements:
     - chardet >=3.0.2
     - click >=7
     - colorama >=0.2
-    - dominate
+    - dominate >=2.8
     - filetype >=1.0.1
     - habanero >=0.6
     - isbnlib >=3.9.1
     - lxml >=4.3.5
     - prompt_toolkit >=2.0.5
     - pygments >=2.2
-    - pyparsing >=2.2
+    - pyparsing >=3.0
     - python-doi >=0.1.1
     - python-slugify >=1.2.6
     - requests >=2.11.1
