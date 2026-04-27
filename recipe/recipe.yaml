@@ -1,24 +1,28 @@
-{% set name = "papis" %}
-{% set version = "0.15.0" %}
+schema_version: 1
+
+context:
+  name: papis
+  version: "0.15.0"
 
 package:
-  name: {{ name|lower }}
-  version: {{ version }}
+  name: ${{ name|lower }}
+  version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/papis-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/papis-${{ version }}.tar.gz
   sha256: 9d0e319a4e04388bc1f705c272b607aaf2b678e33530bff64b1a58bc1364b788
 
 build:
-  entry_points:
-    - papis=papis.commands.default:run
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
   noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - papis=papis.commands.default:run
 
 requirements:
   host:
-    - python {{ python_min }}
+    - python ${{ python_min }}.*
     - pip
     - setuptools
     - hatchling
@@ -27,7 +31,7 @@ requirements:
     - arxiv >=1.0.0
     - platformdirs >=4.0.0
     - prompt-toolkit >=3.0.5
-    - python >={{ python_min }}
+    - python >=${{ python_min }}
     - pyyaml >=3.12
     - arxiv2bib >=1.0.7
     - beautifulsoup4 >=4.4.1
@@ -51,21 +55,24 @@ requirements:
     - twine <5.0.0,>=4.0.1  # isbnlib 3.10.13 has requirement twine<5.0.0,>=4.0.1
     - typing-extensions >=3.7
 
-test:
-  imports:
-    - papis
-  commands:
-    - pip check
-    - papis --help
-  requires:
-    - pip
-    - python {{ python_min }}
+tests:
+  - python:
+      imports:
+        - papis
+      pip_check: true
+      python_version: ${{ python_min }}
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - papis --help
 
 about:
-  home: https://github.com/papis/papis
   summary: Powerful and highly extensible command-line based document and bibliography manager
   license: GPL-3.0-or-later
   license_file: LICENSE
+  homepage: https://github.com/papis/papis
 
 extra:
   recipe-maintainers:
