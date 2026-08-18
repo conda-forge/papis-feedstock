@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: papis
-  version: "0.15.0"
+  version: 0.16.0
 
 package:
   name: ${{ name|lower }}
@@ -10,10 +10,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/papis-${{ version }}.tar.gz
-  sha256: 9d0e319a4e04388bc1f705c272b607aaf2b678e33530bff64b1a58bc1364b788
+  sha256: a7ce419077bf50bd1db14618c0be971f325a0f331632d4729d5acf8239053c74
 
 build:
-  number: 1
+  number: 0
   noarch: python
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   python:
@@ -27,34 +27,24 @@ requirements:
     - setuptools
     - hatchling
   run:
-    - setuptools
     - arxiv >=1.0.0
     - platformdirs >=4.0.0
     - prompt-toolkit >=3.0.5
     - python >=${{ python_min }}
     - pyyaml >=3.12
-    - arxiv2bib >=1.0.7
     - beautifulsoup4 >=4.4.1
     - bibtexparser >=0.6.2,<2
-    - chardet >=3.0.2
     - click >=7
     - colorama >=0.2
     - dominate >=2.8
     - filetype >=1.0.1
     - habanero >=0.6
-    - isbnlib >=3.9.1
     - lxml >=4.3.5
-    - prompt_toolkit >=2.0.5
     - pygments >=2.2
-    - pyparsing >=3.0
     - python-doi >=0.1.1
     - python-slugify >=1.2.6
     - requests >=2.11.1
-    - stevedore >=1.30
-    - tqdm >=4.1
-    - twine <5.0.0,>=4.0.1  # isbnlib 3.10.13 has requirement twine<5.0.0,>=4.0.1
-    - typing-extensions >=3.7
-
+    - lark >=1.2.0
 tests:
   - python:
       imports:
